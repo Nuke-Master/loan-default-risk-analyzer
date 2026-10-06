@@ -233,7 +233,18 @@ The project itself does not approve or reject loans. It demonstrates an analytic
 
 # Dataset
 
-The project uses a historical loan dataset obtained from Kaggle.
+This project uses the Lending Club loan dataset containing borrower financial and credit-related information.
+
+**Original Dataset:** [Lending Club Data — Kaggle](https://www.kaggle.com/datasets/braindeadcoder/lending-club-data)
+
+The raw dataset is not included in this repository because the Kaggle dataset page currently does not provide a clearly identifiable redistribution license.
+
+To reproduce the analysis:
+
+1. Download the dataset from the original Kaggle source.
+2. Place the CSV file at:
+   `data/loan_data.csv`
+3. Run the notebooks in the recommended order.
 
 The dataset contains loan-level information including:
 
@@ -266,9 +277,7 @@ Where:
 1 → Not Fully Paid
 ```
 
-> **Dataset source:** Kaggle. Please refer to the original Kaggle dataset page for the applicable license and redistribution terms.
-
-**Dataset Source:** [Lending Club Data — Kaggle](https://www.kaggle.com/datasets/braindeadcoder/lending-club-data)
+> **Dataset source:** [Lending Club Data — Kaggle](https://www.kaggle.com/datasets/braindeadcoder/lending-club-data)
 
 ---
 
