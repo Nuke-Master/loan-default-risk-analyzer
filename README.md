@@ -268,6 +268,8 @@ Where:
 
 > **Dataset source:** Kaggle. Please refer to the original Kaggle dataset page for the applicable license and redistribution terms.
 
+**Dataset Source:** [Lending Club Data — Kaggle](https://www.kaggle.com/datasets/braindeadcoder/lending-club-data)
+
 ---
 
 # Technologies Used
@@ -477,23 +479,26 @@ The model uses:
 
 ---
 
-# Model Evaluation
+## Model Evaluation
 
-The models are evaluated using:
+Two classification models were evaluated using Accuracy, Precision, Recall, F1 Score, and ROC-AUC.
 
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- ROC-AUC
+| Model | Accuracy | Precision | Recall | F1 Score | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Logistic Regression | 65.40% | 25.14% | 58.63% | 35.19% | 0.677 |
+| Random Forest | 81.78% | 33.85% | 14.33% | 20.14% | 0.646 |
 
-The comparison is stored in:
+### Model Comparison
 
-```text
-data/model_comparison.csv
-```
+- **Random Forest** achieved higher overall accuracy at **81.78%**.
+- **Logistic Regression** achieved substantially higher recall (**58.63% vs 14.33%**), meaning it identified more of the loans that were actually not fully paid.
+- Logistic Regression also achieved a higher **F1 Score (35.19%)** and **ROC-AUC (0.677)** than Random Forest.
+- For a loan-risk use case, accuracy alone can be misleading because missing risky loans can be costly. Therefore, **recall and ROC-AUC are important evaluation metrics alongside accuracy**.
+- Based on these evaluation results, **Logistic Regression provides the stronger baseline for identifying potential non-repayment cases**, while Random Forest demonstrates higher overall classification accuracy but substantially lower recall.
 
-Using multiple metrics provides a broader view of model performance, particularly because the target classes are not evenly distributed.
+The model comparison results are also saved in:
+
+`data/model_comparison.csv`
 
 ---
 
@@ -535,31 +540,40 @@ The dashboard also displays the comparison between:
 
 ---
 
-# Dashboard Preview
+## Dashboard Preview
 
-Dashboard screenshots can be added here.
+The Streamlit dashboard provides an interactive view of the loan portfolio, repayment behavior, and borrower characteristics.
 
-For example:
+### Loan Portfolio Distribution
 
-```text
-docs/dashboard-overview.png
-```
+![Loan Distribution by Purpose](docs/dashboard-overview.png)
 
-Once screenshots are added to the repository, they can be displayed using:
+The portfolio is concentrated in **debt consolidation**, followed by **all other** and **credit card** loans.
 
-![Loan Default Risk Analyzer Dashboard](docs/dashboard-overview.png)
-```
+### Non-Repayment Rate by Loan Purpose
 
-Additional screenshots can be added for:
+![Non-Repayment Rate by Loan Purpose](docs/non-repayment-by-purpose.png)
 
-```text
-docs/risk-analysis.png
-docs/model-comparison.png
-```
+The historical data shows that **small-business loans have the highest non-repayment rate** among the displayed purposes, while **major purchase** and **credit card** loans have lower rates.
+
+### DTI by Repayment Outcome
+
+![DTI by Repayment Outcome](docs/dti-by-outcome.png)
+
+The boxplot compares debt-to-income distributions between fully paid and not-fully-paid loans. The not-fully-paid group has a somewhat higher median DTI, indicating a relationship worth investigating further.
+
+### FICO Score by Repayment Outcome
+
+![FICO Score by Repayment Outcome](docs/fico-by-outcome.png)
+
+The not-fully-paid group has a lower median FICO score than the fully paid group, while also showing several high-score outliers.
+
+> These observations describe patterns in the historical dataset and should not be interpreted as causal relationships or as standalone lending decisions.
 
 ---
 
 # Project Structure
+
 
 ```text
 Loan Default Risk Analyzer/
@@ -574,6 +588,12 @@ Loan Default Risk Analyzer/
 │   ├── model_comparison.csv
 │   └── logistic_feature_importance.csv
 │
+├── docs/
+│   ├── dashboard-overview.png
+│   ├── non-repayment-by-purpose.png
+│   ├── dti-by-outcome.png
+│   └── fico-by-outcome.png
+│
 ├── notebooks/
 │   ├── 01_data_understanding.ipynb
 │   ├── 03_sql_analysis.ipynb
@@ -583,6 +603,7 @@ Loan Default Risk Analyzer/
 └── sql/
     └── business_queries.sql
 ```
+
 
 ---
 
@@ -721,7 +742,7 @@ Covers:
 - NumPy
 - Matplotlib
 - Data preprocessing
-- Feature engineering
+- Feature transformation
 - Data analysis
 
 ## Machine Learning
