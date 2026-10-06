@@ -3,3 +3,4 @@ __pycache__/
 .ipynb_checkpoints/
 .DS_Store
 data/loan_risk.db
+data/loan_data.csv
