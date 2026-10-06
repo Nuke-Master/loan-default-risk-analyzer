@@ -553,6 +553,16 @@ The dashboard also displays the comparison between:
 
 The Streamlit dashboard provides an interactive view of the loan portfolio, repayment behavior, and borrower characteristics.
 
+### Dashboard Screenshots
+
+![Loan Distribution by Purpose](docs/dashboard-overview.png)
+
+![Non-Repayment Rate by Loan Purpose](docs/non-repayment-by-purpose.png)
+
+![DTI by Repayment Outcome](docs/dti-by-outcome.png)
+
+![FICO Score by Repayment Outcome](docs/fico-by-outcome.png)
+
 ### Loan Portfolio Distribution
 
 ![Loan Distribution by Purpose](docs/dashboard-overview.png)
@@ -593,7 +603,6 @@ Loan Default Risk Analyzer/
 ├── .gitignore
 │
 ├── data/
-│   ├── loan_data.csv
 │   ├── model_comparison.csv
 │   └── logistic_feature_importance.csv
 │
